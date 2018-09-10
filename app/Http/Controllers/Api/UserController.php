@@ -55,7 +55,7 @@ class UserController extends BaseController
 			return $this->_400('Validation Error', $validator->errors());
 		} else {
 			if(!Auth::attempt($request->only(['email','password']))) {
-				return $this->_200('Wrong Email or Password.!');
+				return $this->_401('Unauthorized');
 			} else {
 				$user = $request->user();
 				$tokenResult = $user->createToken('Personal Access Token');
