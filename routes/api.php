@@ -26,8 +26,15 @@ Route::prefix('auth')->group(function () {
 });
 
 
+// use token personal
 Route::group(['middleware'=>'auth:api'], function () {
 	Route::get('user','Api\UserController@user');
 });
 
+// use token anonymous
+Route::group(['middleware'=>'client'], function () {
+	Route::get('/asd', function () {
+		return 'asd';
+	});
+});
 
