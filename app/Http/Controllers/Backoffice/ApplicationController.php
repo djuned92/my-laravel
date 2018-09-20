@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backoffice;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\ApiTrait;
+use Models\Application;
+use Validator;
 
 class ApplicationController extends Controller
 {
+    use ApiTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        $data['application'] = Application::find(1);
+        return view('backoffice.application.v_application', $data); 
     }
 
     /**
@@ -57,7 +63,8 @@ class ApplicationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['application'] = Application::find($id);
+        return view('backoffice.application.f_application', $data);
     }
 
     /**
@@ -69,7 +76,19 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'company' => 'company',
+       ]);
+
+       if($validator->fails()) {
+            return $this->_400('Validation Error', $validator->errors());
+       } else {
+            Application::find($id)->update($request->all());
+
+            return $this->_200('Application success to updated');
+       }
+
     }
 
     /**

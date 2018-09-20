@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/**
+* midlleware auth
+*/
+Route::group(['middleware' 	=> 'auth','prefix' 	=> 'backoffice','namespace' => 'Backoffice'], function() {
+	Route::resource('application','ApplicationController',['only'=>['index','edit','update']]);
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

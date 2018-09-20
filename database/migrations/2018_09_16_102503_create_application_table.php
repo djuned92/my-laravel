@@ -17,10 +17,10 @@ class CreateApplicationTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('company');
-            $table->string('logo');
-            $table->string('logo_mini');
-            $table->string('logo_large');
-            $table->string('theme');
+            $table->string('logo')->nullable();
+            $table->string('logo_mini')->nullable();
+            $table->string('logo_large')->nullable();
+            $table->string('theme')->nullable();
             $table->timeStamps();
         });
     }
