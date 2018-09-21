@@ -29,6 +29,38 @@ class BaseController extends Controller
 		return response()->json($response, $code);
 	}
 
+	/*
+	* status code = 201
+	* status created
+	* method post or put
+	*/
+
+	public function _201($message, $code = 201)
+	{
+		$response = [
+			'success' => false,
+			'message' => $message
+		];
+
+		return response()->json($response, $code);
+	}
+
+	/*
+	* status code = 204 no content
+	* The server successfully processed the request, but is not returning any content.
+	* ex delete
+	*/
+
+	public function _204($message, $code = 204)
+	{
+		$response = [
+			'success' => false,
+			'message' => $message
+		];
+
+		return response()->json($response, $code);
+	}
+
 
 	/*
 	* status code = 400
