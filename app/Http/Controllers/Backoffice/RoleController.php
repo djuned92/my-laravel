@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\ApiTrait;
 use Models\Role;
 use Models\Menu;
 use Models\Privilege;
@@ -12,6 +13,7 @@ use Validator;
 
 class RoleController extends Controller
 {
+    use ApiTrait;
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +62,7 @@ class RoleController extends Controller
 
             Privilege::create($data_app_priv);
             DB::commit();
-            // return response()->json($response);
+            return $this->_200('Role success to be created.!');
         } catch (Exception $e) {
             DB::rollback();
         }
@@ -75,7 +77,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**
@@ -86,7 +88,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['role'] = Role::find($id);
+        return view('backoffice.role.f_role', $data);
     }
 
     /**
@@ -98,7 +101,16 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
+
+        if($validator->fails()) {
+            return $this->_400('Validator Error', $validator->errors());
+        } else {
+            Role::find($id)->update($request->all());
+            return $this->_201('Role success to updated.!');
+        }
     }
 
     /**

@@ -85,7 +85,7 @@ class ApplicationController extends Controller
             return $this->_400('Validation Error', $validator->errors());
        } else {
             Application::find($id)->update($request->all());
-            return $this->_200('Application success to updated');
+            return $this->_201('Application success to updated');
        }
 
     }
