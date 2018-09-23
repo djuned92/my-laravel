@@ -18,7 +18,7 @@ class CreateAppPrivilegeTable extends Migration
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('tm_role');
             $table->integer('menu_id')->unsigned();
-            $table->foreign('menu_id')->references('id')->on('app_menu');
+            $table->foreign('menu_id')->references('id')->on('app_menu')->onDelete('cascade');
             $table->integer('can_create')->default(0);
             $table->integer('can_read')->default(0);
             $table->integer('can_update')->default(0);

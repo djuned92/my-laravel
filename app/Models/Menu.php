@@ -10,6 +10,7 @@ class Menu extends Model
 
     protected $fillable = [
     	'level',
+        'parent_id',
     	'menu',
     	'link',
     	'is_published',

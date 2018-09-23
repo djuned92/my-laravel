@@ -42,29 +42,40 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
-            $role_id = Role::create($request->all())->id;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
 
-            $menus = Menu::all();
-            $data_app_priv = [];        
-            foreach ($menus as $key => $value) {
-                $rows['role_id']        = $role_id;
-                $rows['menu_id']        = $value->id;
-                $rows['can_create']     = ($role_id == 1) ? 1 : 0;
-                $rows['can_read']       = ($role_id == 1) ? 1 : 0;
-                $rows['can_update']     = ($role_id == 1) ? 1 : 0;
-                $rows['can_delete']     = ($role_id == 1) ? 1 : 0;
-                $rows['created_at']     = \Carbon::now();
+        if($validator->fails()) {
+            return $this->_400('Validator Error', $validator->errors());
+        } else {
+            DB::beginTransaction();
+            try {
+                $role_id = Role::create($request->all())->id;
 
-                $data_app_priv[] = $rows;
+                $menus = Menu::all();
+                $data_app_priv = [];        
+                foreach ($menus as $key => $value) {
+                    $rows['role_id']        = $role_id;
+                    $rows['menu_id']        = $value->id;
+                    $rows['can_create']     = ($role_id == 1) ? 1 : 0;
+                    $rows['can_read']       = ($role_id == 1) ? 1 : 0;
+                    $rows['can_update']     = ($role_id == 1) ? 1 : 0;
+                    $rows['can_delete']     = ($role_id == 1) ? 1 : 0;
+                    $rows['created_at']     = \Carbon::now();
+
+                    $data_app_priv[] = $rows;
+                }
+
+                Privilege::create($data_app_priv);
+                
+                DB::commit();
+        
+                return $this->_200('Role success to be created.!');
+            } catch (\Exception $e) {        
+                DB::rollback();
+                return $this->_500('Internal Server Error', $e->getMessage(), $e->getTrace());
             }
-
-            Privilege::create($data_app_priv);
-            DB::commit();
-            return $this->_200('Role success to be created.!');
-        } catch (Exception $e) {
-            DB::rollback();
         }
         
     }
@@ -121,6 +132,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Role::destroy($id);
+        $this->_204('Role success to deleted.!');
     }
 }

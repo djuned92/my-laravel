@@ -16,8 +16,9 @@ class CreateAppMenuTable extends Migration
         Schema::create('app_menu', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('level')->default(0);
-            $table->integer('parent_id')->unsigned()->default(0);
-            $table->foreign('parent_id')->references('id')->on('app_menu');
+            // $table->integer('parent_id')->nullable()->unsigned();
+            $table->integer('parent_id')->nullable();
+            // $table->foreign('parent_id')->references('id')->on('app_menu');
             $table->string('menu');
             $table->string('link');
             $table->integer('is_published')->default(0);

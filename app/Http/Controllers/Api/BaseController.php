@@ -117,11 +117,13 @@ class BaseController extends Controller
 	* internal server error
 	* The general catch-all error when the server-side throws an exception.
 	*/
-	public function _500($message, $code = 500)
+	public function _500($message, $errorMessage = false, $trace,  $code = 500)
 	{
 		$response = [
 			'success' => false,
-			'message' => $message
+			'message' => $message,
+			'error'	  => $errorMessage,
+			'trace'	  => $trace
 		];
 
 		return response()->json($response, $code);

@@ -9,11 +9,15 @@ class Privilege extends Model
     protected $table = 'app_privilege';
 
     protected $fillable = [
-    	'can_create',
+    	'menu_id',
+        'role_id',
+        'can_create',
     	'can_read',
     	'can_update',
     	'can_delete'
     ];
+
+    // protected $guarded = [];
 
     protected $dates = [
     	'created_at',
