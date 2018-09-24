@@ -20,7 +20,7 @@ class CreateAppMenuTable extends Migration
             $table->integer('parent_id')->nullable();
             // $table->foreign('parent_id')->references('id')->on('app_menu');
             $table->string('menu');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->integer('is_published')->default(0);
             $table->integer('menu_order');
             $table->string('icon')->nullable();
