@@ -19,9 +19,11 @@ Route::group(['prefix' 	=> 'backoffice','namespace' => 'Backoffice'], function()
 	
 	Route::resource('application','ApplicationController',['only'=>['index','edit','update']]);
 
-	Route::resource('role','RoleController',['except'=>'show']);
+	Route::resource('roles','RoleController',['except'=>'show']);
 
-	Route::resource('menu','MenuController',['except'=>'show']);
+	Route::resource('menus','MenuController',['except'=>'show']);
+
+	Route::resource('users','UserContnroller');
 });
 
 

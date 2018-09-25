@@ -38,7 +38,7 @@ class BaseController extends Controller
 	public function _201($message, $code = 201)
 	{
 		$response = [
-			'success' => false,
+			'success' => true,
 			'message' => $message
 		];
 
@@ -54,7 +54,7 @@ class BaseController extends Controller
 	public function _204($message, $code = 204)
 	{
 		$response = [
-			'success' => false,
+			'success' => true,
 			'message' => $message
 		];
 

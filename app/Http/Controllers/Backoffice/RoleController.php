@@ -62,7 +62,7 @@ class RoleController extends Controller
                     $rows['can_read']       = ($role_id == 1) ? 1 : 0;
                     $rows['can_update']     = ($role_id == 1) ? 1 : 0;
                     $rows['can_delete']     = ($role_id == 1) ? 1 : 0;
-                    $rows['created_at']     = \Carbon::now();
+                    $rows['created_at']     = Carbon::now()->format('Y-m-d H:i:s');
 
                     $data_app_priv[] = $rows;
                 }

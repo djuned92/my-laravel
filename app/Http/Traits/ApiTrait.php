@@ -12,13 +12,15 @@ trait ApiTrait {
 	{
 		if($result == true) {
 			$response = [
-				'success' 	=> true,
+				'success' 	=> true, 
+				'type' 		=> 'success',
 				'data'		=> $result,
 				'message'	=> $message
 			];
 		} else {
 			$response = [
-				'success' 	=> true,
+				'success' 	=> true, 
+				'type' 		=> 'success',
 				'message'	=> $message
 			];
 		}
@@ -35,8 +37,9 @@ trait ApiTrait {
 	public function _201($message, $code = 201)
 	{
 		$response = [
-			'success' => false,
-			'message' => $message
+			'success' 	=> true, 
+			'type' 		=> 'success',
+			'message' 	=> $message
 		];
 
 		return response()->json($response, $code);
@@ -51,8 +54,9 @@ trait ApiTrait {
 	public function _204($message, $code = 204)
 	{
 		$response = [
-			'success' => false,
-			'message' => $message
+			'success' 	=> true, 
+			'type' 		=> 'success',
+			'message' 	=> $message
 		];
 
 		return response()->json($response, $code);
@@ -68,6 +72,7 @@ trait ApiTrait {
 	{
 		$response = [
 			'success' 	=> false,
+			'type'		=> 'error',
 			'message'	=> $message
 		];
 
@@ -87,6 +92,7 @@ trait ApiTrait {
 	{
 		$response = [
 			'success' => false,
+			'type'	  => 'error',
 			'message' => $message
 		];
 
@@ -103,6 +109,7 @@ trait ApiTrait {
 	{
 		$response = [
 			'success' => false,
+			'type'	  => 'error',
 			'message' => $message
 		];
 
@@ -118,6 +125,7 @@ trait ApiTrait {
 	{
 		$response = [
 			'success' => false,
+			'type'	  => 'error',
 			'message' => $message,
 			'error'	  => $errorMessage,
 			'trace'	  => $trace
