@@ -23,6 +23,11 @@ class Role extends Model
 
     public function privileges()
     {
-    	return $this->hasMany(Privilege::class, 'role_id');
+    	return $this->hasMany('App\Models\Privilege');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App\User');
     }
 }

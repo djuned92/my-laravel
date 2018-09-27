@@ -23,7 +23,7 @@ Route::group(['prefix' 	=> 'backoffice','namespace' => 'Backoffice'], function()
 
 	Route::resource('menus','MenuController',['except'=>'show']);
 
-	Route::resource('users','UserContnroller');
+	Route::resource('users','UserController');
 });
 
 

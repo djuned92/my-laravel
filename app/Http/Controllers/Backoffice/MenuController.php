@@ -120,13 +120,15 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $data['menu'] = Menu::find($id);
+        // $data['menu'] = Menu::find($id);
+        $data = Menu::with('parent')->get();
+        dd($data);
         return view('backoffice.menu.f_menu', $data);
     }
 
     /**
      * Update the specified resource in storage.
-     *
+     * NOTICE method put, with postman send with x-www-form-urlencode
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -166,7 +168,7 @@ class MenuController extends Controller
                 
                 DB::commit();
         
-                return $this->_200('Menu success to be updated.!');
+                return $this->_201('Menu success to be updated.!');
             } catch (\Exception $e) {        
                 DB::rollback();
                 return $this->_500('Internal Server Error', $e->getMessage(), $e->getTrace());
@@ -183,6 +185,6 @@ class MenuController extends Controller
     public function destroy($id)
     {
         Menu::destroy($id);
-        $this->_204('Menu success to deleted.!');
+        return $this->_200('Menu success to deleted.!');
     }
 }

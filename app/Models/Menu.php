@@ -25,16 +25,16 @@ class Menu extends Model
 
     public function children()
     {
-    	return $this->hasMany(Menu::class,'parent_id');
+    	return $this->hasMany('App\Models\Menu','parent_id');
     }
 
     public function parent()
     {
-    	return $this->belongsTo(Menu::class, 'parent_id');
+    	return $this->belongsTo('App\Models\Menu', 'parent_id');
     }
 
     public function privileges()
     {
-    	return $this->hasMany(Privilege::class, 'menu_id');
+    	return $this->hasMany('App\Models\Privilege', 'menu_id');
     }
 }

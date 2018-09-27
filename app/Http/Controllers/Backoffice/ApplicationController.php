@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiTrait;
-use Models\Application;
+use App\Models\Application;
 use Validator;
 
 class ApplicationController extends Controller
@@ -78,11 +78,11 @@ class ApplicationController extends Controller
     {
        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'company' => 'company',
+            'company' => 'required',
        ]);
 
        if($validator->fails()) {
-            return $this->_400('Validation Error', $validator->errors());
+            return $this->_400('Validator Error', $validator->errors());
        } else {
             Application::find($id)->update($request->all());
             return $this->_201('Application success to updated');

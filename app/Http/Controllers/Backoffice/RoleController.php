@@ -133,6 +133,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::destroy($id);
-        $this->_204('Role success to deleted.!');
+        $this->_200('Role success to deleted.!');
     }
 }

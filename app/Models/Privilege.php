@@ -26,12 +26,12 @@ class Privilege extends Model
 
     public function role()
     {
-    	return $this->belongsTo(Role::class,'role_id');
+    	return $this->belongsTo('App\Models\Role','role_id');
     }
 
     public function menu()
     {
-    	return $this->belongsTo(Menu::class,'menu_id');
+    	return $this->belongsTo('App\Models\Menu','menu_id');
     }
 
 }
