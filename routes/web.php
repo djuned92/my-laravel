@@ -23,6 +23,8 @@ Route::group(['prefix' 	=> 'backoffice','namespace' => 'Backoffice'], function()
 
 	Route::resource('menus','MenuController',['except'=>'show']);
 
+	Route::resource('privileges','PrivilegeController',['only'=>['index','update']]);
+
 	Route::resource('users','UserController');
 });
 
