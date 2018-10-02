@@ -114,7 +114,8 @@ class UserController extends Controller
             },
             'user.profile' => function($q) {
                 $q->select(['user_id','fullname','address','gender']);
-        }])->select(['id','name'])->find($id);
+            }
+        ])->select(['id','name'])->find($id);
         dd($data);
         return view('backoffice.user.f_user', $data);
     }

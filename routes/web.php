@@ -14,6 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/blank', function () {
+    return view('blank');
+});
+
+
 // 'middleware' 	=> 'auth',
 Route::group(['prefix' 	=> 'backoffice','namespace' => 'Backoffice'], function() {
 	
