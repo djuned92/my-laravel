@@ -21,53 +21,62 @@ class MenusTableSeeder extends Seeder
 		    		'link'	=> null,
 		    		'is_published' => 1,
 		    		'menu_order' => 10000,
-		    		'icon'	=> 'fa-gear'
+		    		'icon'	=> 'flaticon-settings'
 		        ],
 		        [
 		    		'level'	=> 1,
 		    		'parent_id' => 1,
 		    		'menu'	=> 'Menu',
-		    		'link'	=> 'menu',
+		    		'link'	=> null,
 		    		'is_published' => 1,
 		    		'menu_order' => 11000,
 		    		'icon'	=> null
 		        ],
 		        [
-		    		'level'	=> 2,
+		    		'level'	=> 1,
 		    		'parent_id' => 1,
 		    		'menu'	=> 'User',
 		    		'link'	=> null,
+		    		'is_published' => 1,
+		    		'menu_order' => 12000,
+		    		'icon'	=> null
+		        ],
+		        [
+		    		'level'	=> 2,
+		    		'parent_id' => 2,
+		    		'menu'	=> 'Menu List',
+		    		'link'	=> 'menus',
+		    		'is_published' => 1,
+		    		'menu_order' => 11100,
+		    		'icon'	=> null
+		        ],
+		        [
+		    		'level'	=> 2,
+		    		'parent_id' => 2,
+		    		'menu'	=> 'Access Control List',
+		    		'link'	=> 'privileges',
+		    		'is_published' => 1,
+		    		'menu_order' => 11200,
+		    		'icon'	=> null
+		        ],
+		        [
+		    		'level'	=> 2,
+		    		'parent_id' => 3,
+		    		'menu'	=> 'User List',
+		    		'link'	=> 'users',
 		    		'is_published' => 1,
 		    		'menu_order' => 12100,
 		    		'icon'	=> null
 		        ],
 		        [
 		    		'level'	=> 2,
-		    		'parent_id' => 1,
-		    		'menu'	=> 'User List',
-		    		'link'	=> null,
-		    		'is_published' => 1,
-		    		'menu_order' => 12110,
-		    		'icon'	=> null
-		        ],
-		        [
-		    		'level'	=> 2,
-		    		'parent_id' => 1,
+		    		'parent_id' => 3,
 		    		'menu'	=> 'User Role',
-		    		'link'	=> 'role',
+		    		'link'	=> 'roles',
 		    		'is_published' => 1,
-		    		'menu_order' => 12120,
+		    		'menu_order' => 12200,
 		    		'icon'	=> null
-		        ],
-		        [
-		    		'level'	=> 2,
-		    		'parent_id' => 1,
-		    		'menu'	=> 'Access Control List',
-		    		'link'	=> 'privilege',
-		    		'is_published' => 1,
-		    		'menu_order' => 12130,
-		    		'icon'	=> null
-		        ]
+		        ],   
 	        ]
 
     	);

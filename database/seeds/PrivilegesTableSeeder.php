@@ -63,6 +63,14 @@ class PrivilegesTableSeeder extends Seeder
 		    		'can_delete' 	=> 1
 		        ],
 		        [
+		    		'role_id'		=> 1,
+		    		'menu_id' 		=> 7,
+		    		'can_create'	=> 1,
+		    		'can_read'		=> 1,
+		    		'can_update' 	=> 1,
+		    		'can_delete' 	=> 1
+		        ],
+		        [
 		    		'role_id'		=> 2,
 		    		'menu_id' 		=> 1,
 		    		'can_create'	=> 0,
@@ -105,6 +113,14 @@ class PrivilegesTableSeeder extends Seeder
 		        [
 		    		'role_id'		=> 2,
 		    		'menu_id' 		=> 6,
+		    		'can_create'	=> 0,
+		    		'can_read'		=> 0,
+		    		'can_update' 	=> 0,
+		    		'can_delete' 	=> 0
+		        ],
+		        [
+		    		'role_id'		=> 2,
+		    		'menu_id' 		=> 7,
 		    		'can_create'	=> 0,
 		    		'can_read'		=> 0,
 		    		'can_update' 	=> 0,
