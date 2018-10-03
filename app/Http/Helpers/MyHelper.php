@@ -112,24 +112,50 @@ if( !function_exists('generate_menu') ) {
                         foreach ($menus2->get() as $k2 => $v2) {
                         	$id = $v2->id;
                         	// level 2 with children
-                        	// $menus3 = Menu::GetListMenus('3',$id);
-
-                        	$list_menu .='
-	                        		<li class="m-menu__item " aria-haspopup="true" >
-	                                    <a  href="'.$v2->link.'" class="m-menu__link ">
-	                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-	                                    <span></span>
-	                                    </i>
-	                                    <span class="m-menu__link-text">
-	                                    '.$v2->menu.'
-	                                    </span>
-	                                    </a>
-	                                </li>';
+                        	$menus3 = Menu::GetListMenus('3',$id);
+                        	if($menus3->count() > 0) {
+                        		$list_menu .= '
+                        			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover">
+				                        <a  href="#" class="m-menu__link m-menu__toggle">
+				                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+				                        <span></span>
+				                        </i>
+				                        <span class="m-menu__link-text">
+				                        '.$v2->menu.'
+				                        </span>
+				                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+				                        </a>
+				                        <div class="m-menu__submenu ">
+				                            <span class="m-menu__arrow"></span>
+				                            <ul class="m-menu__subnav">';
+	                            foreach ($menus3->get() as $k3 => $v3) {
+	                            	$list_menu .='
+		                        		<li class="m-menu__item " aria-haspopup="true" >
+		                                    <a  href="'.$v3->link.'" class="m-menu__link ">
+		                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+		                                    <span></span>
+		                                    </i>
+		                                    <span class="m-menu__link-text">
+		                                    '.$v3->menu.'
+		                                    </span>
+		                                    </a>
+		                                </li>';	
+	                            }
+                        	} else {
+	                        	$list_menu .='
+		                        		<li class="m-menu__item " aria-haspopup="true" >
+		                                    <a  href="'.$v2->link.'" class="m-menu__link ">
+		                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+		                                    <span></span>
+		                                    </i>
+		                                    <span class="m-menu__link-text">
+		                                    '.$v2->menu.'
+		                                    </span>
+		                                    </a>
+		                                </li>';
+                        	}
                         }
-                        $list_menu .= '
-		                        	</ul>
-					            </div>
-					        </li>';
+                        $list_menu .= '</ul></div></li>';
 					} else {
 						// level 1 without children
 						$list_menu .='
@@ -147,10 +173,7 @@ if( !function_exists('generate_menu') ) {
 					}
 				}
 
-				$list_menu .='
-							</ul>
-			            </div>
-			        </li>';
+				$list_menu .='</ul></div></li>';
 			} else {
 				// level 0 without childrem
 				$list_menu .='

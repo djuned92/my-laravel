@@ -15,14 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blank', function () {
-    return view('blank');
-});
+// Route::get('/blank', function () {
+//     return view('blank');
+// });
 
 
 // 'middleware' 	=> 'auth',
-Route::group(['prefix' 	=> 'backoffice','namespace' => 'Backoffice'], function() {
+Route::group(['middleware' 	=> 'auth','prefix' => 'backoffice','namespace' => 'Backoffice'], function() {
 	
+	Route::get('blank', function() {
+		return view('blank');
+	});
+
 	Route::resource('application','ApplicationController',['only'=>['index','edit','update']]);
 
 	Route::resource('roles','RoleController',['except'=>'show']);
