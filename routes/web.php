@@ -12,13 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-// Route::get('/blank', function () {
-//     return view('blank');
-// });
-
+Auth::routes();
 
 // 'middleware' 	=> 'auth',
 Route::group(['middleware' 	=> 'auth','prefix' => 'backoffice','namespace' => 'Backoffice'], function() {
@@ -39,6 +36,3 @@ Route::group(['middleware' 	=> 'auth','prefix' => 'backoffice','namespace' => 'B
 });
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

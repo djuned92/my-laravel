@@ -66,8 +66,15 @@
         <!-- end::Scroll Top -->
 
         <!--begin::Base Scripts -->
-        <script src="{{ asset('backoffice/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('backoffice/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('backoffice/vendors/base/vendors.bundle.js') }}"></script>
+        <script src="{{ asset('backoffice/demo/default/base/scripts.bundle.js') }}"></script>
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
         <!--end::Base Scripts -->
         @yield('script')
     </body>

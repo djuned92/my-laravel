@@ -41,7 +41,7 @@ class Menu extends Model
     public function scopeGetListMenus($query, $level, $parent_id)
     {
         $role_id = \Auth::id();
-        $role_id = 1;
+        // $role_id = 1;
         $q = $query->join('app_privilege as p','app_menu.id','=','p.menu_id')
             ->where([
                 ['is_published','=','1'],

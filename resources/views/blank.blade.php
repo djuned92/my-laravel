@@ -3,7 +3,14 @@
 @section('title','This is title')
 
 @section('content')
-{!! breadcrumb('Blank',['/blank'=> 'Blank']) !!}
+{!! breadcrumb('Blank',[
+		'/blank' => 'Blank',
+		'/one' => 'One',
+		'/two' => 'Two'
+
+	]) 
+
+!!}
 <div class="m-content">
 	<!--begin::Portlet-->
 	<div class="m-portlet">
