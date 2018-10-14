@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('jwt-login', 'UserController@login');
+
+Route::get('user','UserController@getUser')->middleware('jwt.auth');
